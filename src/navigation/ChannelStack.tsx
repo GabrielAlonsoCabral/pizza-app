@@ -17,6 +17,7 @@ const ChannelStack = () => {
         component={ChannelScreen}
         options={({ navigation, route }) => ({
           title: "Home",
+          headerShown:false,
           headerRight: () => (
             <MembersIcon route={route} navigation={navigation} />
           ),
