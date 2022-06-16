@@ -58,6 +58,7 @@
     "@expo/metro-config": "^0.3.12",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.64.12",
+    "git-commit-msg-linter": "^3.2.8",
     "jest": "^26.6.3",
     "jest-expo": "~44.0.1",
     "react-test-renderer": "17.0.1",

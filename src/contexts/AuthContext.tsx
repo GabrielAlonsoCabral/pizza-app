@@ -1,11 +1,13 @@
-import { createContext, useState, useContext, useEffect } from "react";
+import {
+  createContext, useState, useContext, useEffect,
+} from 'react';
 
 const AuthContext = createContext({
   userId: null,
   setUserId: (newId: string) => {},
 });
 
-const AuthContextComponent = ({ children, client }) => {
+function AuthContextComponent({ children, client }) {
   const [userId, setUserId] = useState(null);
 
   return (
@@ -13,7 +15,7 @@ const AuthContextComponent = ({ children, client }) => {
       {children}
     </AuthContext.Provider>
   );
-};
+}
 
 export default AuthContextComponent;
 

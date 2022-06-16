@@ -7,17 +7,17 @@ import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme,
-} from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import * as React from "react";
-import { ColorSchemeName } from "react-native";
+} from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import * as React from 'react';
+import { ColorSchemeName } from 'react-native';
 
-import NotFoundScreen from "../screens/NotFoundScreen";
-import { RootStackParamList } from "../../types";
-import LinkingConfiguration from "./LinkingConfiguration";
-import DrawerNavigator from "./DrawerNavigator";
-import SignUpScreen from "../screens/SignUpScreen";
-import SignInScreen from "../screens/SignInScreen";
+import NotFoundScreen from '../screens/NotFoundScreen';
+import { RootStackParamList } from '../../types';
+import LinkingConfiguration from './LinkingConfiguration';
+import DrawerNavigator from './DrawerNavigator';
+import SignUpScreen from '../screens/SignUpScreen';
+import SignInScreen from '../screens/SignInScreen';
 
 export default function Navigation({
   colorScheme,
@@ -27,12 +27,11 @@ export default function Navigation({
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
     >
       {global.env?.user
         ? <RootNavigator />
-        : <AuthNavigator />
-      }
+        : <AuthNavigator />}
 
     </NavigationContainer>
   );
@@ -51,11 +50,11 @@ function RootNavigator() {
         name="Root"
         component={DrawerNavigator}
         options={{ headerShown: false }}
-        />
+      />
       <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}
-        options={{ title: "Oops!" }}
+        options={{ title: 'Oops!' }}
       />
     </Stack.Navigator>
   );
@@ -67,18 +66,18 @@ function AuthNavigator() {
       <Stack.Screen
         name="SignIn"
         component={SignInScreen}
-      options={{ headerShown: false }}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="SignUp"
         component={SignUpScreen}
         options={{ headerShown: false }}
       />
-            <Stack.Screen
+      <Stack.Screen
         name="Root"
         component={DrawerNavigator}
         options={{ headerShown: false }}
-        />
+      />
 
     </Stack.Navigator>
   );

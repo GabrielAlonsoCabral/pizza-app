@@ -1,23 +1,22 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import React from "react";
-import RequestsScreen from "../../../screens/RequestsScreen";
-
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from 'react';
+import RequestsScreen from '../../../screens/RequestsScreen';
 
 const Stack = createNativeStackNavigator();
 
-const RequestsStack = () => {
+function RequestsStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="requests"
         component={RequestsScreen}
         options={({ navigation, route }) => ({
-          title: "Pedidos",
+          title: 'Pedidos',
           headerShown: false,
         })}
       />
     </Stack.Navigator>
   );
-};
+}
 
 export default RequestsStack;

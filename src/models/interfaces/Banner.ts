@@ -4,4 +4,3 @@ export interface IBanner{
     uri:string;
     description:string;
   }
-  

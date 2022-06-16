@@ -1,14 +1,13 @@
-import { View, Text,  StyleSheet } from "react-native";
-import React from "react";
+import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
 
-const NewChannelScreen = () => {
-
+function NewChannelScreen() {
   return (
     <View style={styles.root}>
-        <Text> Novo Canal Screen</Text>
+      <Text> Novo Canal Screen</Text>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   root: {
@@ -16,11 +15,11 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: "gray",
+    borderColor: 'gray',
     padding: 10,
     borderRadius: 5,
     marginHorizontal: 10,
-    color: "white",
+    color: 'white',
   },
 });
 

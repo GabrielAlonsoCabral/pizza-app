@@ -1,9 +1,9 @@
-import React from "react";
-import { View, Text, Box } from "native-base";
+import React from 'react';
+import { View, Text, Box } from 'native-base';
 
-const MenuScreen = () => {
-    return (<Box safeArea><Text>Cardápio</Text></Box>
-    );
-};
+function MenuScreen() {
+  return (<Box safeArea><Text>Cardápio</Text></Box>
+  );
+}
 
 export default MenuScreen;
