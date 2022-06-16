@@ -11,8 +11,8 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <NativeBaseProvider>
-        <Navigation colorScheme={"dark"} />
-        <StatusBar style="light" />
+        <Navigation colorScheme={"light"} />
+        <StatusBar style="dark" />
       </NativeBaseProvider>
     </SafeAreaProvider>
   );

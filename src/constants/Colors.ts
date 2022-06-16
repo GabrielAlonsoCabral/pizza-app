@@ -18,6 +18,15 @@ export default {
   },
 };
 
+export const AppColors = {
+  red: "#E71D36",
+  white: "#FCFAF9",
+  black: "#011627",
+  yellow: "#EEBA0B",
+  green: "#09E85E"
+
+}
+
 export const StreamColors = {
   accent_blue: "#005FFF",
   accent_green: "#20E070",

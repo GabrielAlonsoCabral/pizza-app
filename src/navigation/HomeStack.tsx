@@ -2,22 +2,23 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { Pressable, StyleSheet } from "react-native";
-import ChannelMembersScreen from "../screens/ChannelMembersScreen";
-import ChannelScreen from "../screens/ChannelScreen";
+import ChannelMembersScreen from "../screens/RequestsScreen";
 import InviteMembersScreen from "../screens/InviteMembersScreen";
 import { AntDesign } from "@expo/vector-icons";
+import BottomNavigator from "./BottomNavigator";
+
 
 const Stack = createNativeStackNavigator();
 
-const ChannelStack = () => {
+const HomeStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="Home"
-        component={ChannelScreen}
+        component={BottomNavigator}
         options={({ navigation, route }) => ({
           title: "Home",
-          headerShown:false,
+          headerShown: false,
           headerRight: () => (
             <MembersIcon route={route} navigation={navigation} />
           ),
@@ -69,4 +70,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ChannelStack;
+export default HomeStack;

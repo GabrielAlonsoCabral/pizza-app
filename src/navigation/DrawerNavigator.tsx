@@ -5,18 +5,18 @@ import { Text, StyleSheet, View, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useState } from "react";
 import UserListScreen from "../screens/UserListScreen";
-import Button from "../components/Button";
 import NewChannelScreen from "../screens/NewChannelScreen";
-import ChannelStack from "./ChannelStack";
+import HomeStack from "./HomeStack";
+import { AppColors } from "../constants/Colors";
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigator = ({navigation}) => {
+const DrawerNavigator = ({ navigation }) => {
   return (
     <Drawer.Navigator drawerContent={CustomDrawerContent}>
       <Drawer.Screen
-        name="ChannelScreen"
-        component={ChannelStack}
+        name="Home"
+        component={HomeStack}
         options={{
           headerShown: false,
         }}
@@ -53,48 +53,10 @@ const CustomDrawerContent = (props) => {
 
   return (
     <SafeAreaView {...props} style={{ flex: 1 }}>
-      <Text style={styles.title}>notJust Development</Text>
+      <Text style={styles.title}>Pizzaria Morumbi</Text>
 
-      <View style={styles.tabs}>
-        <Text
-          onPress={() => setTab("public")}
-          style={[
-            styles.groupTitle,
-            { color: tab === "public" ? "white" : "gray" },
-          ]}
-        >
-          Public
-        </Text>
-        <Text
-          onPress={() => setTab("private")}
-          style={[
-            styles.groupTitle,
-            { color: tab === "private" ? "white" : "gray" },
-          ]}
-        >
-          Private
-        </Text>
-      </View>
+      <Text style={{ left: 10 }}>a</Text>
 
-      {tab === "public" ? (
-        <>
-          <Button
-            title="Start new channel"
-            onPress={() => {
-              navigation.navigate("NewChannel");
-            }}
-          />
-        </>
-      ) : (
-        <>
-          <Button
-            title="Start new conversation"
-            onPress={() => {
-              navigation.navigate("UserList");
-            }}
-          />
-        </>
-      )}
 
       <Text style={styles.logout} onPress={logout}>
         Logout
@@ -105,7 +67,7 @@ const CustomDrawerContent = (props) => {
 
 const styles = StyleSheet.create({
   title: {
-    color: "white",
+    color: AppColors.black,
     fontWeight: "bold",
     alignSelf: "center",
     fontSize: 16,
