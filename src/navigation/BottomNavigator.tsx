@@ -1,9 +1,12 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import ChannelMembersScreen from "../screens/RequestsScreen";
-import ChannelScreen from "../screens/HomeScreen";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { AppColors } from "../constants/Colors";
+import HomeStack from "./stacks/home/HomeStack";
+import RequestsStack from "./stacks/requests/RequestsStack";
+import RestaurantsStack from "./stacks/restaurants/RestaurantsStack";
+import MenuStack from "./stacks/menu/MenuStack";
+
 
 const BottomTab = createBottomTabNavigator();
 
@@ -40,7 +43,7 @@ export default function BottomNavigator() {
 
             <BottomTab.Screen
                 name="Home"
-                component={ChannelScreen}
+                component={HomeStack}
                 options={{
                     headerShown: false,
                     title: "Inicío"
@@ -49,7 +52,7 @@ export default function BottomNavigator() {
 
             <BottomTab.Screen
                 name="Pedidos"
-                component={ChannelMembersScreen}
+                component={RequestsStack}
                 options={{
                     headerShown: false
                 }}
@@ -57,7 +60,7 @@ export default function BottomNavigator() {
 
             <BottomTab.Screen
                 name="Cardápio"
-                component={ChannelScreen}
+                component={MenuStack}
                 options={{
                     headerShown: false
                 }}
@@ -65,7 +68,7 @@ export default function BottomNavigator() {
 
             <BottomTab.Screen
                 name="Restaurantes"
-                component={ChannelScreen}
+                component={RestaurantsStack}
                 options={{
                     headerShown: false
                 }}

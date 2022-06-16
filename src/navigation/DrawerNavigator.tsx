@@ -6,7 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useState } from "react";
 import UserListScreen from "../screens/UserListScreen";
 import NewChannelScreen from "../screens/NewChannelScreen";
-import HomeStack from "./HomeStack";
+import BottomNavigator from "./BottomNavigator";
 import { AppColors } from "../constants/Colors";
 
 const Drawer = createDrawerNavigator();
@@ -16,7 +16,7 @@ const DrawerNavigator = ({ navigation }) => {
     <Drawer.Navigator drawerContent={CustomDrawerContent}>
       <Drawer.Screen
         name="Home"
-        component={HomeStack}
+        component={BottomNavigator}
         options={{
           headerShown: false,
         }}
