@@ -68,7 +68,7 @@ function HomeScreen() {
         </View>
 
         <View mt={5}>
-          <Heading p={3} fontSize={22} color={AppColors.black} mb={5}>
+          <Heading p={3} fontSize={22} color={AppColors.black}>
             Promoções
           </Heading>
           <View p={1}>
