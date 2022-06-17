@@ -1,15 +1,14 @@
 import { FlatList, ImageBackground } from 'react-native';
 import React from 'react';
 import {
-  View, Heading, Box, Text,
+  View, Heading, Box,
 } from 'native-base';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ScrollView } from 'react-native-gesture-handler';
 import { banners, promotions } from '../fake/Home';
 import { AppColors } from '../constants/Colors';
 import { BannerProductCategories, BannerPromotions } from '../components/Banner/Banners';
-import { Config } from '../fake/Configs';
+import Config from '../fake/Configs';
 
 function Separator() {
   return (

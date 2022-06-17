@@ -2,12 +2,13 @@ import {
   createDrawerNavigator,
 } from '@react-navigation/drawer';
 import {
-  Text, StyleSheet, View, Pressable,
+  Text, StyleSheet,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import React, { useState } from 'react';
 import BottomNavigator from './BottomNavigator';
 import { AppColors } from '../constants/Colors';
+import Configs from '../fake/Configs';
 
 const Drawer = createDrawerNavigator();
 
@@ -21,7 +22,7 @@ function DrawerNavigator({ navigation }) {
           headerShown: false,
         }}
       />
-      </Drawer.Navigator>
+    </Drawer.Navigator>
   );
 }
 
@@ -33,9 +34,14 @@ function CustomDrawerContent(props) {
 
   return (
     <SafeAreaView {...props} style={{ flex: 1 }}>
-      <Text style={styles.title}>Pizzaria Morumbi</Text>
+      <Text style={styles.title}>{Configs.company_name}</Text>
 
-      <Text style={{color:AppColors.black, justifyContent:"center", textAlign:"center",top:"90%"}} onPress={logout}>
+      <Text
+        style={{
+          color: AppColors.black, justifyContent: 'center', textAlign: 'center', top: '90%',
+        }}
+        onPress={logout}
+      >
         Logout
       </Text>
     </SafeAreaView>
