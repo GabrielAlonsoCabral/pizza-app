@@ -1,4 +1,4 @@
-package clinical.app;
+package eazy.pizza;
 
 import android.os.Build;
 import android.os.Bundle;

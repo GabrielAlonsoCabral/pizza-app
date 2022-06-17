@@ -6,8 +6,6 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import React, { useState } from 'react';
-import UserListScreen from '../screens/UserListScreen';
-import NewChannelScreen from '../screens/NewChannelScreen';
 import BottomNavigator from './BottomNavigator';
 import { AppColors } from '../constants/Colors';
 
@@ -17,24 +15,13 @@ function DrawerNavigator({ navigation }) {
   return (
     <Drawer.Navigator drawerContent={CustomDrawerContent}>
       <Drawer.Screen
-        name="Home"
+        name="BottomNavigator"
         component={BottomNavigator}
         options={{
           headerShown: false,
         }}
       />
-      <Drawer.Screen
-        name="UserList"
-        component={UserListScreen}
-        options={{ title: 'Users' }}
-      />
-
-      <Drawer.Screen
-        name="NewChannel"
-        component={NewChannelScreen}
-        options={{ title: 'New Channel' }}
-      />
-    </Drawer.Navigator>
+      </Drawer.Navigator>
   );
 }
 
@@ -42,22 +29,13 @@ function CustomDrawerContent(props) {
   const [tab, setTab] = useState('private');
   const { navigation } = props;
 
-  const onChannelSelect = (channel) => {
-    // navigate to a screen for this channel
-    navigation.navigate('ChannelScreen', {
-      screen: 'Chat',
-      params: { channel },
-    });
-  };
   const logout = () => navigation.push('SignIn');
 
   return (
     <SafeAreaView {...props} style={{ flex: 1 }}>
       <Text style={styles.title}>Pizzaria Morumbi</Text>
 
-      <Text style={{ left: 10 }}>a</Text>
-
-      <Text style={styles.logout} onPress={logout}>
+      <Text style={{color:AppColors.black, justifyContent:"center", textAlign:"center",top:"90%"}} onPress={logout}>
         Logout
       </Text>
     </SafeAreaView>

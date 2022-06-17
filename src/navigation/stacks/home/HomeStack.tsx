@@ -10,7 +10,7 @@ function HomeStack() {
       <Stack.Screen
         name="home"
         component={HomeScreen}
-        options={({ navigation, route }) => ({
+        options={({ navigation, route }) => ({ //eslint-disable-line
           title: 'Inicío',
           headerShown: false,
         })}

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Discord",
-    "slug": "Discord",
+    "name": "Eazy Pizza",
+    "slug": "Eazy Pizza",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -20,14 +20,14 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "clinical.app"
+      "bundleIdentifier": "eazy.pizza"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "clinical.app"
+      "package": "eazy.pizza"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
