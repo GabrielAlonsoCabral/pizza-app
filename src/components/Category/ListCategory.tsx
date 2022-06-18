@@ -53,11 +53,13 @@ export default function ListCategory() {
     );
   }
   return (
-    <FlatList
-      data={categories}
-      renderItem={({ item }) => <CardCategory category={item} />}
-      ItemSeparatorComponent={HorizontalSeparator}
-      horizontal
-    />
+    <View p={1}>
+      <FlatList
+        data={categories}
+        renderItem={({ item }) => <CardCategory category={item} />}
+        ItemSeparatorComponent={HorizontalSeparator}
+        horizontal
+      />
+    </View>
   );
 }
