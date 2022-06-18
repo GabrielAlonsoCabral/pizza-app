@@ -66,9 +66,9 @@ export default function Navigation({
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
     >
-      {global.env?.user
-        ? <RootNavigator />
-        : <AuthNavigator />}
+      {/* {global.env?.user */}
+      <RootNavigator />
+      {/* : <AuthNavigator />} */}
 
     </NavigationContainer>
   );

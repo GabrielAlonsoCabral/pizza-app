@@ -15,7 +15,7 @@ import {
 } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlatList } from 'react-native';
-import Header from '../components/Header';
+// import Header from '../components/Header';
 import Configs from '../fake/Configs';
 import { categories as dataCategories, products as dataProducts } from '../fake/Menu';
 import { IEstablishment, ICategory, IProduct } from '../models';
@@ -113,13 +113,12 @@ function MenuScreen() {
     );
   }
   return (
-    <SafeAreaView>
-      <ScrollView height="105%">
+    <ScrollView height="100%">
+      <SafeAreaView>
+        <View top="-1%">
+          {/* <Header title="Cardápio" /> */}
 
-        <View>
-          <Header title="Cardápio" />
-
-          <View mt={3}>
+          <View>
             <Heading p={3} fontSize={18} color={AppColors.black}>
               Categorias
             </Heading>
@@ -134,19 +133,19 @@ function MenuScreen() {
           </View>
 
           <View p={3}>
-            <Heading fontSize={18}>Nossos Produtos</Heading>
+            <Heading fontSize={18}>Qual é a sua fome hoje ?</Heading>
           </View>
           {/* {establishments.length > 1 ? <SelectEstablishment /> : null} */}
 
           <View shadow={9} borderRadius={20} p={3}>
-            <View shadow={2} mt={2}>
+            <View shadow={2} mt={2} mb="-10%">
               {products.map((product) => <ProductsList product={product} />)}
             </View>
           </View>
         </View>
 
-      </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScrollView>
   );
 }
 

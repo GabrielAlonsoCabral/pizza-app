@@ -4,5 +4,12 @@
     "eslint.alwaysShowStatus": true,
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
-    }
+    },
+    "files.exclude": {
+        "node_modules": true,
+        ".expo":true,
+        ".expo-shared":true,
+        "android":true,
+        "ios":true
+      }
 }

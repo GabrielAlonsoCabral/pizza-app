@@ -2,10 +2,12 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { AppColors } from '../constants/Colors';
-import HomeStack from './stacks/home/HomeStack';
+// import HomeStack from './stacks/home/HomeStack';
 import RequestsStack from './stacks/requests/RequestsStack';
 import RestaurantsStack from './stacks/restaurants/RestaurantsStack';
 import MenuStack from './stacks/menu/MenuStack';
+import HamburgerMenu from '../components/HamburguerMenu';
+import CartBadge from '../components/Cart/CartBadge';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -39,30 +41,35 @@ export default function BottomNavigator() {
       })}
     >
 
-      <BottomTab.Screen
+      {/* <BottomTab.Screen
         name="Home"
         component={HomeStack}
         options={{
-          headerShown: false,
+          headerShown: true,
           title: 'Inicío',
         }}
-      />
+      /> */}
 
       <BottomTab.Screen
         name="Cardápio"
         component={MenuStack}
-        options={{
-          headerShown: false,
-        }}
+        options={({ navigation }) => ({
+          title: 'Cardápio',
+          headerLeft: () => <HamburgerMenu navigation={navigation} />,
+          headerRight: () => <CartBadge />,
+
+        })}
       />
       <BottomTab.Screen
         name="Pedidos"
         component={RequestsStack}
-        options={{
-          headerShown: false,
-        }}
-      />
+        options={({ navigation }) => ({
+          title: 'Pedidos',
+          headerLeft: () => <HamburgerMenu navigation={navigation} />,
+          headerRight: () => <CartBadge />,
 
+        })}
+      />
       <BottomTab.Screen
         name="Restaurantes"
         component={RestaurantsStack}

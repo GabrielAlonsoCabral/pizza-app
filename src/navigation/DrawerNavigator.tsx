@@ -16,7 +16,7 @@ function DrawerNavigator({ navigation }) {
   return (
     <Drawer.Navigator drawerContent={CustomDrawerContent}>
       <Drawer.Screen
-        name="BottomNavigator"
+        name="Pizzaria Morumbi"
         component={BottomNavigator}
         options={{
           headerShown: false,

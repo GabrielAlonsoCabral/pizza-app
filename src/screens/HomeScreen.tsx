@@ -17,9 +17,6 @@ function HomeScreen() {
     <SafeAreaView>
       {/* <ScrollView> */}
       <View w="100%">
-
-        <Header title={Config.company_name} />
-
         <View mt={5}>
           <Heading p={3} fontSize={22} color={AppColors.black}>
             Qual é a sua fome hoje ?

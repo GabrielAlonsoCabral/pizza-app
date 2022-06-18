@@ -1,8 +1,10 @@
 import React from 'react';
 import { ImageBackground } from 'react-native';
 import { View, Box, Heading } from 'native-base';
+import { Ionicons } from '@expo/vector-icons';
 import { AppColors } from '../constants/Colors';
 import Configs from '../fake/Configs';
+import CartBadge from './Cart/CartBadge';
 
 interface IHeaderProps{
   title:string;
@@ -18,6 +20,9 @@ export default function Header({ title }:IHeaderProps) {
           }}
           />
         </ImageBackground>
+        <View position="absolute">
+          <CartBadge />
+        </View>
         <View style={{
           position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center',
         }}
