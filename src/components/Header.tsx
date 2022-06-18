@@ -1,7 +1,6 @@
 import React from 'react';
 import { ImageBackground } from 'react-native';
 import { View, Box, Heading } from 'native-base';
-import { Ionicons } from '@expo/vector-icons';
 import { AppColors } from '../constants/Colors';
 import Configs from '../fake/Configs';
 import CartBadge from './Cart/CartBadge';
