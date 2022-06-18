@@ -21,7 +21,7 @@
     ],
     "rules": {
         "import/no-unresolved": "error",
-        "max-len": ["error", { "code": 150 }],
+        "max-len": ["error", { "code": 300 }],
         "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }],
         "import/extensions": [
             "error",

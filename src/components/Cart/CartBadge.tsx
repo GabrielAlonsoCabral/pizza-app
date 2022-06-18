@@ -1,12 +1,24 @@
-import React from 'react';
+import React, {
+  useState,
+} from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import {
   Badge, HStack, Text, View, Button, Actionsheet, useDisclose, Heading, Divider,
 } from 'native-base';
 import { Pressable } from 'react-native';
+import _ from 'lodash';
 import { AppColors } from '../../constants/Colors';
+import { ICartProduct } from '../../models';
+import { useCart } from './Cart';
 
 export default function CartBadge() {
+  const cartList = useCart();
+  function getTotalToPay() {
+    const getPriceFormatted = (priceString) => Number(priceString?.replace('R$ ', '').replace(',', '.'));
+    const totalByProduct = cartList?.map((cartProduct:ICartProduct) => cartProduct.amount * getPriceFormatted(cartProduct.price));
+    return _.sum(totalByProduct);
+  }
+
   const  BadgeCounter = ()=> { //eslint-disable-line
     return (
       <Badge
@@ -21,7 +33,7 @@ export default function CartBadge() {
           fontSize: 10,
         }}
       >
-        2
+        {cartList ? cartList.length : 0}
       </Badge>
     );
   };
@@ -45,6 +57,23 @@ export default function CartBadge() {
     );
   }
 
+  function ProductCart({ product }) {
+    return (
+      <View>
+        <HStack ml={3} space={1}>
+          <Text fontWeight="medium">{product?.name}</Text>
+          <Text>
+            x
+            {product?.amount}
+          </Text>
+        </HStack>
+        <View marginLeft="auto" position="absolute" right={3}>
+          <Text textAlign="right">{product.price}</Text>
+        </View>
+      </View>
+    );
+  }
+
   function Cart() {
     const {
       isOpen,
@@ -61,15 +90,10 @@ export default function CartBadge() {
               <Heading> Meu Carrinho </Heading>
             </View>
             <View width="100%" marginRight="auto">
-              <View>
-                <HStack ml={3} space={1}>
-                  <Text fontWeight="medium">Pizza de Calabresa</Text>
-                  <Text>x2</Text>
-                </HStack>
-                <View marginLeft="auto" position="absolute" right={3}>
-                  <Text textAlign="right">R$ 39,99</Text>
-                </View>
-              </View>
+
+              {
+                cartList.map((cartProduct) => <ProductCart product={cartProduct} />)
+              }
 
               <Divider mt={3} />
               <View ml={3} mt={3}>
@@ -78,7 +102,7 @@ export default function CartBadge() {
                 </View>
                 <View marginLeft="auto" position="absolute" right={0}>
                   <Badge bgColor={AppColors.gray} colorScheme={AppColors.gray}>
-                    <Text textAlign="right">R$ 79,98</Text>
+                    <Text textAlign="right">R$ {getTotalToPay()}</Text>
                   </Badge>
                 </View>
               </View>

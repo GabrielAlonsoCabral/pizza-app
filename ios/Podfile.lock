@@ -314,7 +314,7 @@ PODS:
     - React-cxxreact (= 0.64.3)
     - React-jsi (= 0.64.3)
     - React-perflogger (= 0.64.3)
-  - RNCAsyncStorage (1.16.3):
+  - RNCAsyncStorage (1.17.6):
     - React-Core
   - RNCPicker (2.4.0):
     - React-Core
@@ -351,8 +351,8 @@ PODS:
   - RNScreens (3.10.2):
     - React-Core
     - React-RCTImage
-  - RNSVG (12.1.1):
-    - React
+  - RNSVG (12.3.0):
+    - React-Core
   - RNVectorIcons (9.1.0):
     - React-Core
   - Yoga (1.14.0)
@@ -585,15 +585,15 @@ SPEC CHECKSUMS:
   React-RCTVibration: c7f845861e79eae13dc1e8217a3cf47a3945b504
   React-runtimeexecutor: 493d9abb8b23c3f84e19ae221eeba92cadcb70dc
   ReactCommon: 8fea6422328e2fc093e25c9fac67adbcf0f04fb4
-  RNCAsyncStorage: a9954b3d9fcc16112e984c559c96d27b9e9251a8
+  RNCAsyncStorage: 86050d31a1cdc564876f68d8e342688b29f9b186
   RNCPicker: 6d5d64e7b90c240c779ee0938ec433c11e2dd758
   RNGestureHandler: e1099204721a17a89c81fcd1cc2e92143dc040fb
   RNReanimated: db6fc1362254dfd18b4ef5f921af9bb72b2e42d0
   RNScreens: d6da2b9e29cf523832c2542f47bf1287318b1868
-  RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
+  RNSVG: 302bfc9905bd8122f08966dc2ce2d07b7b52b9f8
   RNVectorIcons: 7923e585eaeb139b9f4531d25a125a1500162a0b
   Yoga: e6ecf3fa25af9d4c87e94ad7d5d292eedef49749
 
-PODFILE CHECKSUM: 7fa93186b2499c2944c00c86b41cc9058f73b8d7
+PODFILE CHECKSUM: 5104cf6dad8e4bf280d1a8acba6cc85357866b21
 
 COCOAPODS: 1.11.3

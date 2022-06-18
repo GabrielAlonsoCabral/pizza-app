@@ -4,14 +4,16 @@ import {
 } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable } from 'react-native';
-import { IProduct } from '../../models';
+import { ICartProduct, IProduct } from '../../models';
 import { AppColors } from '../../constants/Colors';
+import { useDispatchCart } from '../Cart/Cart';
 
 interface ICardProductProps{
     product:IProduct
 }
 
 export default function CardProduct({ product }:ICardProductProps) {
+  const dispatch = useDispatchCart();
   const [amountsToBuy, setAmountsToBuy] = useState<number>(0);
 
   function handleAmountsToBuy(isIncrease:boolean) {
@@ -23,8 +25,36 @@ export default function CardProduct({ product }:ICardProductProps) {
     return null;
   }
 
+  async function addToCart() {
+    if (!amountsToBuy) return null;
+
+    const newCartProduct:ICartProduct = {
+      id: product.id,
+      name: product.name,
+      amount: amountsToBuy,
+      price: product.price,
+    };
+
+    // const { data: currentCartList } = await get({ key: '@cart_list', unparse: true });
+    // let newCartList = [];
+    // if (currentCartList && currentCartList.length && currentCartList.some((cartProduct:ICartProduct) => cartProduct.id === newCartProduct.id)) {
+    //   newCartList = currentCartList.filter((cartProduct:ICartProduct) => cartProduct.id !== newCartProduct.id);
+    // }
+
+    // newCartList ? [...newCartList, newCartProduct] : [newCartProduct]; //eslint-disable-line
+
+    // await save({
+    //   key: '@cart_list',
+    //   value: newCartList,
+    //   parse: true,
+    // });
+
+    dispatch({ type: 'ADD', item: newCartProduct });
+    return null;
+  }
+
   return (
-    <View shadow={4} bg="#FAFFFD" borderBottomRadius={20} borderTopRadius={20} justifyContent="center" display="flex" mb={5}>
+    <View shadow={4} bg={AppColors.white} borderBottomRadius={20} borderTopRadius={20} justifyContent="center" display="flex" mb={5}>
 
       <Box>
         <Image
@@ -97,7 +127,9 @@ export default function CardProduct({ product }:ICardProductProps) {
           <HStack marginLeft="auto" space={10}>
 
             <View>
-              <Ionicons name="cart-outline" size={25} />
+              <Pressable onPress={() => addToCart()}>
+                <Ionicons name="cart-outline" size={25} />
+              </Pressable>
             </View>
 
           </HStack>
