@@ -1,4 +1,4 @@
-import { IBanner, IPromotion } from '../models/interfaces/Banner';
+import { IBanner, IPromotion } from '../models';
 
 export const banners: Array<IBanner> = [
   {

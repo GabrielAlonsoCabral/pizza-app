@@ -13,7 +13,7 @@ export default function BottomNavigator() {
   return (
     <BottomTab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
+        tabBarIcon: ({ focused, color, size }) => { //eslint-disable-line
           let iconName;
 
           if (route.name === 'Home') {
@@ -35,7 +35,7 @@ export default function BottomNavigator() {
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: AppColors.red,
-        tabBarInactiveTintColor: 'gray',
+        tabBarInactiveTintColor: AppColors.black,
       })}
     >
 
@@ -49,16 +49,15 @@ export default function BottomNavigator() {
       />
 
       <BottomTab.Screen
-        name="Pedidos"
-        component={RequestsStack}
+        name="Cardápio"
+        component={MenuStack}
         options={{
           headerShown: false,
         }}
       />
-
       <BottomTab.Screen
-        name="Cardápio"
-        component={MenuStack}
+        name="Pedidos"
+        component={RequestsStack}
         options={{
           headerShown: false,
         }}

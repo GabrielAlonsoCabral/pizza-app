@@ -20,10 +20,11 @@ export default {
 
 export const AppColors = {
   red: '#ed254e',
-  white: '#fcfaf9',
+  white: '#FAFFFD',
   black: '#011627',
   yellow: '#EEBA0B',
   green: '#09E85E',
+  gray: 'gray',
 
 };
 

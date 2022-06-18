@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Box, AspectRatio, Center, Image, Stack, HStack, Text,
 } from 'native-base';
-import { IBanner } from '../../models/interfaces/Banner';
+import { IBanner } from '../../models/Banner';
 import { AppColors } from '../../constants/Colors';
 
 interface IBannerProductCategories {
