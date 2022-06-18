@@ -29,6 +29,7 @@ function HomeScreen() {
               data={banners}
               renderItem={({ item }) => <BannerProductCategories item={item} />}
               ItemSeparatorComponent={HorizontalSeparator}
+              showsHorizontalScrollIndicator={false}
               horizontal
             />
           </View>
@@ -43,6 +44,7 @@ function HomeScreen() {
               data={promotions}
               renderItem={({ item }) => <BannerPromotions item={item} />}
               ItemSeparatorComponent={HorizontalSeparator}
+              showsHorizontalScrollIndicator={false}
               horizontal
             />
           </View>
