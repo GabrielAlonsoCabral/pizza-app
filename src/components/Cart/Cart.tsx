@@ -1,30 +1,202 @@
-import React, { useReducer, useContext, createContext } from 'react';
+import React, { useState } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import {
+  Badge, HStack, Text, View, Button, Actionsheet, useDisclose, Heading, Divider, Modal, FormControl, Input, ScrollView, Pressable,
+} from 'native-base';
+import _ from 'lodash';
+import { AppColors } from '../../constants/Colors';
+import { ICartProduct } from '../../models';
+import { useCart, useDispatchCart } from '../../contexts/Cart';
+import CartProduct from './CartProduct';
 
-const CartStateContext = createContext();
-const CartDispatchContext = createContext();
+export default function CartBadge() {
+  // @ts-ignore
+  const cartList:ICartProduct[] = useCart();
+  const dispatch = useDispatchCart();
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'ADD':
-      return [...state, action.item];
-    case 'REMOVE':
-      const newArr = [...state];
-      newArr.splice(action.index, 1);
-      return newArr;
-    default:
-      throw new Error(`unknown action ${action.type}`);
+  const [open, setOpen] = useState(false);
+
+  function getTotalToPay() {
+    const getPriceFormatted = (priceString:string) => Number(priceString?.replace('R$ ', '').replace(',', '.'));
+    const totalByProduct = cartList?.map((cartProduct:ICartProduct) => cartProduct.amount * getPriceFormatted(cartProduct.price));
+    return _.sum(totalByProduct);
   }
-};
 
-export function CartProvider({ children }) {
-  const [state, dispatch] = useReducer(reducer, []);
+  const  BadgeCounter = ()=> { //eslint-disable-line
+    return (
+      <Badge
+        bg={AppColors.red}
+        rounded="full"
+        mb={-1}
+        left={-8}
+        zIndex={1}
+        variant="solid"
+        alignSelf="flex-end"
+        _text={{
+          fontSize: 10,
+        }}
+      >
+        {cartList ? cartList.length : 0}
+      </Badge>
+    );
+  };
+
+  // @ts-ignore
+  function CartIcon({ onPress }) { //eslint-disable-line
+    return (
+      <Pressable
+        onPress={onPress}
+      >
+        <View>
+          <HStack>
+            <Ionicons
+              color="black"
+              name="cart-outline"
+              size={25}
+            />
+            <BadgeCounter />
+          </HStack>
+        </View>
+      </Pressable>
+    );
+  }
+
+  function handleRemove(index:string|number) {
+    // @ts-ignore
+    dispatch({ type: 'REMOVE', index });
+  }
+
+  function clearCart() {
+    // @ts-ignore
+    dispatch({ type: 'CLEAR' });
+  }
+
+  const openModal = () => {
+    setOpen(true);
+  };
+
+  function RenderTotalToPay() {
+    return (
+      <View ml={3} mt={3}>
+        <View>
+          <Text fontWeight="bold">Total</Text>
+        </View>
+        <View marginLeft="auto" position="absolute" right={0}>
+          <Badge bgColor={AppColors.gray} colorScheme={AppColors.gray}>
+            <Text textAlign="right">
+              R$
+              {' '}
+              {getTotalToPay().toFixed(2)}
+            </Text>
+          </Badge>
+        </View>
+      </View>
+    );
+  }
+
+  function RenderCartList() {
+    return (
+      <View>
+
+        {
+      cartList.map((cartProduct, index) => <CartProduct index={index} handleRemove={() => handleRemove(index)} product={cartProduct} />)
+    }
+        <Divider mt={3} />
+      </View>
+    );
+  }
+
+  function RenderCTA() {
+    return (
+      <View mt={5}>
+        <Button
+          _text={{ fontSize: 16, fontWeight: 'bold', color: AppColors.white }}
+          colorScheme="danger"
+          borderRadius={20}
+          bg={AppColors.red}
+          onPress={() => (cartList?.length ? openModal() : null)}
+        >
+          {cartList?.length ? 'Fazer Pedido' : 'Fechar'}
+        </Button>
+      </View>
+    );
+  }
+
+  function PaymentModal() {
+    return (
+      <Modal isOpen={open} onClose={() => setOpen(false)} safeAreaTop>
+        <Modal.Content maxWidth="350">
+          <Modal.CloseButton />
+          <Modal.Header>Contact Us</Modal.Header>
+          <Modal.Body>
+            <FormControl>
+              <FormControl.Label>Name</FormControl.Label>
+              <Input />
+            </FormControl>
+            <FormControl mt="3">
+              <FormControl.Label>Email</FormControl.Label>
+              <Input />
+            </FormControl>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onPress={() => {
+              setOpen(false);
+            }}
+            >
+              Save
+            </Button>
+          </Modal.Footer>
+        </Modal.Content>
+      </Modal>
+    );
+  }
+
+  function Cart() {
+    const {
+      isOpen,
+      onOpen,
+      onClose,
+    } = useDisclose();
+    return (
+      <View>
+        <CartIcon onPress={onOpen} />
+        <Actionsheet isOpen={isOpen} onClose={onClose}>
+          <Actionsheet.Content p={3}>
+            <View marginRight="auto" width="100%" mb={3}>
+              <Heading>
+                {' '}
+                {cartList.length ? 'Meu Carrinho' : 'Seu carrinho está vazio'}
+                {' '}
+              </Heading>
+              {cartList.length
+
+                ? (
+                  <View right={3} position="absolute">
+                    <Pressable onPress={() => clearCart()}>
+                      <Text mt={1} fontSize={12}>Limpar carrinho</Text>
+                    </Pressable>
+                  </View>
+                )
+                : null}
+            </View>
+            <ScrollView mt={3} width="100%" marginRight="auto">
+              <RenderCartList />
+
+            </ScrollView>
+            <View width="100%">
+              {cartList.length ? <RenderTotalToPay /> : null}
+              {cartList.length ? <RenderCTA /> : null}
+            </View>
+          </Actionsheet.Content>
+          {/* <PaymentModal /> */}
+        </Actionsheet>
+      </View>
+    );
+  }
+
   return (
-    <CartDispatchContext.Provider value={dispatch}>
-      <CartStateContext.Provider value={state}>
-        {children}
-      </CartStateContext.Provider>
-    </CartDispatchContext.Provider>
+    <View>
+      <Cart />
+    </View>
   );
 }
-export const useCart = () => useContext(CartStateContext);
-export const useDispatchCart = () => useContext(CartDispatchContext);

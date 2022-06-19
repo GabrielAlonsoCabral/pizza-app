@@ -7,7 +7,7 @@ import RequestsStack from './stacks/requests/RequestsStack';
 import RestaurantsStack from './stacks/restaurants/RestaurantsStack';
 import MenuStack from './stacks/menu/MenuStack';
 import HamburgerMenu from '../components/HamburguerMenu';
-import CartBadge from '../components/Cart/CartBadge';
+import Cart from '../components/Cart/Cart';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -56,7 +56,7 @@ export default function BottomNavigator() {
         options={({ navigation }) => ({
           title: 'Cardápio',
           headerLeft: () => <HamburgerMenu navigation={navigation} />,
-          headerRight: () => <CartBadge />,
+          headerRight: () => <Cart />,
 
         })}
       />
@@ -66,7 +66,7 @@ export default function BottomNavigator() {
         options={({ navigation }) => ({
           title: 'Pedidos',
           headerLeft: () => <HamburgerMenu navigation={navigation} />,
-          headerRight: () => <CartBadge />,
+          headerRight: () => <Cart />,
 
         })}
       />

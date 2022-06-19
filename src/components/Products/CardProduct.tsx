@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import {
-  HStack, View, Text, Image, Badge, Center, Heading, Box,
+  HStack, View, Text, Image, Badge, Center, Heading, Box, IconButton, Slide, Alert, Button, useToast,
 } from 'native-base';
-import { Ionicons } from '@expo/vector-icons';
+import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { Pressable } from 'react-native';
 import { ICartProduct, IProduct } from '../../models';
 import { AppColors } from '../../constants/Colors';
-import { useDispatchCart } from '../Cart/Cart';
+import { useDispatchCart } from '../../contexts/Cart';
+import ToastMessage from '../ToastMessage';
 
 interface ICardProductProps{
     product:IProduct
@@ -14,6 +15,7 @@ interface ICardProductProps{
 
 export default function CardProduct({ product }:ICardProductProps) {
   const dispatch = useDispatchCart();
+  const toast = useToast();
   const [amountsToBuy, setAmountsToBuy] = useState<number>(0);
 
   function handleAmountsToBuy(isIncrease:boolean) {
@@ -26,7 +28,7 @@ export default function CardProduct({ product }:ICardProductProps) {
   }
 
   async function addToCart() {
-    if (!amountsToBuy) return null;
+    if (!amountsToBuy) return ToastMessage({ message: 'Selecione a quantidade desejada', placement: 'top', toast });
 
     const newCartProduct:ICartProduct = {
       id: product.id,
@@ -35,21 +37,9 @@ export default function CardProduct({ product }:ICardProductProps) {
       price: product.price,
     };
 
-    // const { data: currentCartList } = await get({ key: '@cart_list', unparse: true });
-    // let newCartList = [];
-    // if (currentCartList && currentCartList.length && currentCartList.some((cartProduct:ICartProduct) => cartProduct.id === newCartProduct.id)) {
-    //   newCartList = currentCartList.filter((cartProduct:ICartProduct) => cartProduct.id !== newCartProduct.id);
-    // }
-
-    // newCartList ? [...newCartList, newCartProduct] : [newCartProduct]; //eslint-disable-line
-
-    // await save({
-    //   key: '@cart_list',
-    //   value: newCartList,
-    //   parse: true,
-    // });
-
+    // @ts-ignore
     dispatch({ type: 'ADD', item: newCartProduct });
+    ToastMessage({ message: 'Produto adicionado ao carrinho', placement: 'top', toast });
     return null;
   }
 
@@ -133,6 +123,7 @@ export default function CardProduct({ product }:ICardProductProps) {
             </View>
 
           </HStack>
+
         </View>
       </View>
     </View>
