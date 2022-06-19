@@ -7,8 +7,9 @@ interface IToastMessageProps{
     placement:string;
     // @ts-ignore
     toast:useToast;
+    duration?:number;
 }
-export default function ToastMessage({ message, placement, toast }:IToastMessageProps) {
+export default function ToastMessage({message, placement, toast, duration}:IToastMessageProps) {//eslint-disable-line
   return toast.show({
     // @ts-ignore
     placement,
@@ -17,5 +18,6 @@ export default function ToastMessage({ message, placement, toast }:IToastMessage
         <Heading fontSize={14} color={AppColors.white}>{message}</Heading>
       </Box>
     ),
+    duration: duration || 1000,
   });
 }

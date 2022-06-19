@@ -8,16 +8,15 @@ import { ICartProduct } from '../../models';
 
 interface IProductCardProps{
     product:ICartProduct;
-    index:number|string;
     handleRemove:any
   }
 
-export default function CartProduct({ product, index, handleRemove }:IProductCardProps) {
+export default function CartProduct({ product, handleRemove }:IProductCardProps) {
   return (
     <View mb={5}>
       <HStack ml={3} space={2}>
         <View>
-          <Pressable onPress={() => handleRemove(index)}>
+          <Pressable onPress={handleRemove}>
             <Badge bg={AppColors.red} rounded="full">
               <Ionicons size={16} color={AppColors.white} name="trash-outline" />
             </Badge>

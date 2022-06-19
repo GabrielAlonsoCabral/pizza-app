@@ -8,7 +8,7 @@ const reducer = (state, action) => {
     case 'ADD':
       return [...state, action.item];
     case 'REMOVE':
-      return [...state].splice(action.index, 1);
+      return [...state].filter((element, index) => index !== action.index);
     case 'CLEAR':
       return [];
     default:

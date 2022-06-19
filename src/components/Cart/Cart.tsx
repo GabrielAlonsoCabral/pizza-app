@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import {
-  Badge, HStack, Text, View, Button, Actionsheet, useDisclose, Heading, Divider, Modal, FormControl, Input, ScrollView, Pressable,
+  Badge, HStack, Text, View, Button, Actionsheet, useDisclose, Heading, Divider, ScrollView, Pressable, useToast,
 } from 'native-base';
 import _ from 'lodash';
 import { AppColors } from '../../constants/Colors';
 import { ICartProduct } from '../../models';
 import { useCart, useDispatchCart } from '../../contexts/Cart';
 import CartProduct from './CartProduct';
+import ModalPayment from '../Modal/ModalPayment';
+import ToastMessage from '../ToastMessage';
 
 export default function CartBadge() {
   // @ts-ignore
   const cartList:ICartProduct[] = useCart();
   const dispatch = useDispatchCart();
+  const toast = useToast();
 
-  const [open, setOpen] = useState(false);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
 
   function getTotalToPay() {
     const getPriceFormatted = (priceString:string) => Number(priceString?.replace('R$ ', '').replace(',', '.'));
@@ -71,8 +74,18 @@ export default function CartBadge() {
     dispatch({ type: 'CLEAR' });
   }
 
-  const openModal = () => {
-    setOpen(true);
+  const openPaymentModal = () => {
+    setIsPaymentModalOpen(true);
+  };
+
+  const closePaymentModal = () => {
+    setIsPaymentModalOpen(false);
+  };
+
+  const onConfirmCheckout = () => {
+    setIsPaymentModalOpen(false);
+    ToastMessage({message: 'Pedido confirmado', placement: 'top', toast, duration: 2000});//eslint-disable-line
+    clearCart();
   };
 
   function RenderTotalToPay() {
@@ -84,9 +97,7 @@ export default function CartBadge() {
         <View marginLeft="auto" position="absolute" right={0}>
           <Badge bgColor={AppColors.gray} colorScheme={AppColors.gray}>
             <Text textAlign="right">
-              R$
-              {' '}
-              {getTotalToPay().toFixed(2)}
+              {`RS ${getTotalToPay().toFixed(2)}`}
             </Text>
           </Badge>
         </View>
@@ -99,7 +110,7 @@ export default function CartBadge() {
       <View>
 
         {
-      cartList.map((cartProduct, index) => <CartProduct index={index} handleRemove={() => handleRemove(index)} product={cartProduct} />)
+      cartList.map((cartProduct, index) => <CartProduct handleRemove={() => handleRemove(index)} product={cartProduct} />)
     }
         <Divider mt={3} />
       </View>
@@ -114,40 +125,11 @@ export default function CartBadge() {
           colorScheme="danger"
           borderRadius={20}
           bg={AppColors.red}
-          onPress={() => (cartList?.length ? openModal() : null)}
+          onPress={() => (cartList?.length ? openPaymentModal() : null)}
         >
           {cartList?.length ? 'Fazer Pedido' : 'Fechar'}
         </Button>
       </View>
-    );
-  }
-
-  function PaymentModal() {
-    return (
-      <Modal isOpen={open} onClose={() => setOpen(false)} safeAreaTop>
-        <Modal.Content maxWidth="350">
-          <Modal.CloseButton />
-          <Modal.Header>Contact Us</Modal.Header>
-          <Modal.Body>
-            <FormControl>
-              <FormControl.Label>Name</FormControl.Label>
-              <Input />
-            </FormControl>
-            <FormControl mt="3">
-              <FormControl.Label>Email</FormControl.Label>
-              <Input />
-            </FormControl>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onPress={() => {
-              setOpen(false);
-            }}
-            >
-              Save
-            </Button>
-          </Modal.Footer>
-        </Modal.Content>
-      </Modal>
     );
   }
 
@@ -164,9 +146,7 @@ export default function CartBadge() {
           <Actionsheet.Content p={3}>
             <View marginRight="auto" width="100%" mb={3}>
               <Heading>
-                {' '}
                 {cartList.length ? 'Meu Carrinho' : 'Seu carrinho está vazio'}
-                {' '}
               </Heading>
               {cartList.length
 
@@ -188,7 +168,7 @@ export default function CartBadge() {
               {cartList.length ? <RenderCTA /> : null}
             </View>
           </Actionsheet.Content>
-          {/* <PaymentModal /> */}
+          <ModalPayment isOpen={isPaymentModalOpen} onClose={closePaymentModal} onConfirm={onConfirmCheckout} />
         </Actionsheet>
       </View>
     );
