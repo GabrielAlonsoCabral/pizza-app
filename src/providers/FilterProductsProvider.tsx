@@ -1,18 +1,18 @@
 import React, { ReactNode, useReducer } from 'react';
-import { CartStateContext, CartDispatchContext } from '../contexts/CartContext';
-import CartReducer from '../reducers/CartReducer';
+import { FilterProductStateContext, FilterProductDispatchContext } from '../contexts/FilterProductsContext';
+import FilterProductsReducer from '../reducers/FilterProductsReducer';
 
-interface ICartProviderProps{
+interface IFilterProductProvider{
   children:ReactNode
 }
 
-export default function CartProvider({ children }:ICartProviderProps) {
-  const [state, dispatch] = useReducer(CartReducer, []);
+export default function FilterProductProvider({ children }:IFilterProductProvider) {
+  const [state, dispatch] = useReducer(FilterProductsReducer, []);
   return (
-    <CartDispatchContext.Provider value={dispatch}>
-      <CartStateContext.Provider value={state}>
+    <FilterProductStateContext.Provider value={dispatch}>
+      <FilterProductDispatchContext.Provider value={state}>
         {children}
-      </CartStateContext.Provider>
-    </CartDispatchContext.Provider>
+      </FilterProductDispatchContext.Provider>
+    </FilterProductStateContext.Provider>
   );
 }
