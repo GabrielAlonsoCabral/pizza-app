@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import {
-  HStack, View, Text, Image, Badge, Center, Heading, Box, IconButton, Slide, Alert, Button, useToast,
+  HStack, View, Text, Image, Badge, Center, Heading, Box, IconButton, useToast,
 } from 'native-base';
-import { AntDesign, Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { Pressable } from 'react-native';
 import { ICartProduct, IProduct } from '../../models';
 import { AppColors } from '../../constants/Colors';
-import { useDispatchCart } from '../../contexts/Cart';
+import { useDispatchCart } from '../../contexts/CartContext';
 import ToastMessage from '../ToastMessage';
 
 interface ICardProductProps{
@@ -44,7 +44,7 @@ export default function CardProduct({ product }:ICardProductProps) {
   }
 
   return (
-    <View shadow={4} bg={AppColors.white} borderBottomRadius={20} borderTopRadius={20} justifyContent="center" display="flex" mb={5}>
+    <View shadow={4} bg={AppColors.white} borderRadius={20} justifyContent="center" display="flex" mb={5}>
 
       <Box>
         <Image
@@ -116,12 +116,14 @@ export default function CardProduct({ product }:ICardProductProps) {
 
           <HStack marginLeft="auto" space={10}>
 
-            <View>
-              <Pressable onPress={() => addToCart()}>
-                <Ionicons name="cart-outline" size={25} />
-              </Pressable>
-            </View>
-
+            <IconButton
+              mt={-5}
+              rounded="full"
+              onPress={() => addToCart()}
+              variant="ghost"
+              colorScheme="light"
+              icon={<Ionicons name="cart-outline" size={25} />}
+            />
           </HStack>
 
         </View>

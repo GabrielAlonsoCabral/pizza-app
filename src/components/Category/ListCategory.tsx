@@ -14,7 +14,6 @@ interface ICardCategory{
 
 export default function ListCategory() {
   const [categories, setCategories] = useState<ICategory[]>([]);
-
   const [activeCategories, setActiveCategories] = useState<ICategory[]>([]);
 
   useEffect(() => {

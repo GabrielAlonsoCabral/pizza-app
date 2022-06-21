@@ -6,7 +6,7 @@ import {
 import _ from 'lodash';
 import { AppColors } from '../../constants/Colors';
 import { ICartProduct } from '../../models';
-import { useCart, useDispatchCart } from '../../contexts/Cart';
+import { useCart, useDispatchCart } from '../../contexts/CartContext';
 import CartProduct from './CartProduct';
 import ModalPayment from '../Modal/ModalPayment';
 import ToastMessage from '../ToastMessage';

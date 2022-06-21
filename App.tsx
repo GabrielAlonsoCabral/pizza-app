@@ -6,17 +6,17 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NativeBaseProvider } from 'native-base';
 import { SSRProvider } from '@react-aria/ssr';
 import Navigation from './src/navigation';
-import { CartProvider } from './src/contexts/Cart';
+import InternalProviders from './src/providers';
 
 export default function App() {
   return (
     <SafeAreaProvider>
       <SSRProvider>
         <NativeBaseProvider>
-          <CartProvider>
-            <StatusBar style="dark" />
+          <InternalProviders>
+            <StatusBar style="dark" /> {/*eslint-disable-line */}
             <Navigation colorScheme="light" />
-          </CartProvider>
+          </InternalProviders>
         </NativeBaseProvider>
       </SSRProvider>
     </SafeAreaProvider>

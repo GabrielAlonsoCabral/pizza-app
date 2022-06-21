@@ -11,5 +11,9 @@ export default function ListProducts() {
     setProducts(dataProducts);
   }, []);
 
-  return <View shadow={9} borderRadius={20} p={3}>{products.map((product) => <CardProduct product={product} />)}</View>;
+  return (
+    <View shadow={9} borderRadius={20} p={3}>
+      {products.map((product) => <CardProduct product={product} />)}
+    </View>
+  );
 }
