@@ -14,7 +14,7 @@ export default function App() {
       <SSRProvider>
         <NativeBaseProvider>
           <InternalProviders>
-            <StatusBar style="dark" /> {/*eslint-disable-line */}
+            <StatusBar style="dark" />
             <Navigation colorScheme="light" />
           </InternalProviders>
         </NativeBaseProvider>

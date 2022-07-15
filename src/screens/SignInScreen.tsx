@@ -19,7 +19,7 @@ function SignInScreen({ navigation }) {
     <Center w="100%" h="90%">
       <Box safeArea p="2" py="8" w="90%" maxW="290">
         <Heading size="lg" fontWeight="600" _dark={{ color: 'white' }} _light={{ color: 'black' }}>
-          Eazy Pizza
+          Citizens App
         </Heading>
         <Heading mt="1" _dark={{ color: 'white' }} _light={{ color: 'black' }} fontWeight="medium" size="xs">
           Nunca foi tão facil pedir sua pizza.

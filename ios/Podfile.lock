@@ -557,7 +557,7 @@ SPEC CHECKSUMS:
   EXSplashScreen: c4333e4d7a89cc3f7452166527d207c725d3c2a5
   EXWebBrowser: 829cbd6d36472956ad73c5fa0edf15c1b34ccfd6
   FBLazyVector: c71c5917ec0ad2de41d5d06a5855f6d5eda06971
-  FBReactNativeSpec: 7478dac4767d7cd8a04824d6d358b4364b6dc400
+  FBReactNativeSpec: ca75e2ae5b8291c597ee23836bb3eeb26e86f73e
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
   RCT-Folly: ec7a233ccc97cc556cf7237f0db1ff65b986f27c
   RCTRequired: d34bf57e17cb6e3b2681f4809b13843c021feb6c

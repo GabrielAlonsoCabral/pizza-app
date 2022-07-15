@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Eazy Pizza",
-    "slug": "Eazy Pizza",
+    "name": "Citizens Mobile",
+    "slug": "Citizens Mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -20,14 +20,14 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "eazy.pizza"
+      "bundleIdentifier": "citizens.pizza"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "eazy.pizza"
+      "package": "citizens.pizza"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
