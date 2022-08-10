@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Modal, Button, FormControl, Input, Heading, View, HStack, VStack, Select, CheckIcon, TextArea,
+  Modal, Button, FormControl, Input, View, HStack, VStack, Select, TextArea,
 } from 'native-base';
 import { AppColors } from '../../constants/Colors';
 import UserData from '../../fake/User';

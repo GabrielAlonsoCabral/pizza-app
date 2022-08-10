@@ -7,7 +7,6 @@ import { ICategory } from '../../models';
 import { categories as dataCategories } from '../../fake/Menu';
 import { AppColors } from '../../constants/Colors';
 import { HorizontalSeparator } from '../FlatListSeparator';
-import { useDispatchFilterProduct } from '../../contexts/FilterProductsContext';
 
 interface ICardCategory{
     category:ICategory;
@@ -16,7 +15,7 @@ interface ICardCategory{
 export default function ListCategory() {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [activeCategories, setActiveCategories] = useState<ICategory[]>([]);
-  const dispatch = useDispatchFilterProduct();
+  // const dispatch = useDispatchFilterProduct();
   useEffect(() => {
     setCategories(dataCategories);
   }, []);
@@ -29,7 +28,7 @@ export default function ListCategory() {
       : setActiveCategories([...activeCategories, categoryItem]);
 
     // @ts-ignore
-    dispatch({ type: 'NEW', item: activeCategories });
+    // dispatch({ type: 'NEW', item: activeCategories });
   }
 
   function CardCategory({ category }:ICardCategory) {
